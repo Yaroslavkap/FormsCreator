@@ -20,7 +20,7 @@ function Home() {
 
       <div className='home_image' style={{backgroundImage:`url(${image})`}} >
         <div className='home_image_label'>
-        <h1 >Удобный конструктор опросов и форм обратной связи</h1>
+        <h1>Удобный конструктор опросов и форм обратной связи</h1>
         </div>
       </div>
 
@@ -59,7 +59,7 @@ function Home() {
             <IconContext.Provider value={{ size: '4rem', className: "global-class-name", color:'rgb(115,47,249 )' }}>
               <IoShareSocial/>
             </IconContext.Provider>
-            <h className='home_form_element_label'>Простое распространение</h>
+            <h className='home_form_element_label' style={{textAlign:"center"}}>Простое распространение</h>
           </div>
 
         </div>
