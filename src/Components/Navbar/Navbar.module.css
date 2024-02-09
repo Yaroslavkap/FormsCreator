@@ -23,7 +23,8 @@
     height: 100%;
     align-items: center;
     display: flex;
-    padding: 0 30px;
+    /* padding: 0 30px; */
+    padding-left: 30px;
     /* background: red; */
     list-style-type: none;
     justify-content: center;
@@ -81,4 +82,22 @@
     .navbar_label {
         padding-left: 2rem;
     }   
+    .label_font1 {
+        
+        font-size: 1.8rem;
+    }
+    
+    .label_font2 {
+        color: black;
+        font-size: 1.3rem;
+       
+    }
+
+    .navbar_links {
+        display: none;
+    }
+
+    .links {
+        font-size: 1.5rem;
+    }
 }
