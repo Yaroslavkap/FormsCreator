@@ -31,7 +31,7 @@ function Home() {
         <h className='home_main_label' data-aos="zoom-out" data-aos-offset="300">Создавай опросы без лишних усилий в MAIforms</h>
 
         <div className='home_form'>
-          <div className='home_form_element' data-aos="fade-right" data-aos-offset="300">
+          <div className='home_form_element' data-aos="zoom-in" data-aos-offset="300">
 
             <IconContext.Provider value={{ size: '4rem', className: "global-class-name", color:'rgb(115,47,249 )' }}>
               <FaMousePointer />
@@ -40,7 +40,7 @@ function Home() {
             <h className='home_form_element_label'>Удобство использования</h>
           </div>
 
-          <div className='home_form_element' data-aos="fade-left" data-aos-offset="300">
+          <div className='home_form_element' data-aos="zoom-in" data-aos-offset="300">
           <IconContext.Provider value={{ size: '4rem', className: "global-class-name", color:'rgb(115,47,249 )' }}>
             <TbFileExport />
           </IconContext.Provider>
@@ -48,14 +48,14 @@ function Home() {
             <h className='home_form_element_label'> Экспорт результатов</h>
           </div>
 
-          <div className='home_form_element' data-aos="fade-right" data-aos-offset="200">
+          <div className='home_form_element' data-aos="zoom-in" data-aos-offset="200">
           <IconContext.Provider value={{ size: '4rem', className: "global-class-name", color:'rgb(115,47,249 )' }}>
             <TbBinaryTree />
           </IconContext.Provider>
           <h className='home_form_element_label'>Система логики опроса</h>
           </div>
 
-          <div className='home_form_element' data-aos="fade-left" data-aos-offset="200">
+          <div className='home_form_element' data-aos="zoom-in" data-aos-offset="200">
             <IconContext.Provider value={{ size: '4rem', className: "global-class-name", color:'rgb(115,47,249 )' }}>
               <IoShareSocial/>
             </IconContext.Provider>
