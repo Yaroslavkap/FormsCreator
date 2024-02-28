@@ -194,6 +194,9 @@ body {
     /* border-right: 3px solid rgb(240,235,248);
     border-bottom: 3px solid rgb(240,235,248); */
     border-radius: 10px;
+
+    /* position: fixed; */
+    /* z-index: 99999; */
 }
 
 .form_page_left_label {
@@ -373,6 +376,90 @@ align-items: center;
     transition-duration: 200ms;
 }
 
+/* My */
+
+.my_content {
+    padding-top: 20vh;
+}
+
+.my_content_header {
+    width: 80vw;
+    border-bottom: 3px solid gray;
+}
+
+.my_content_header_h {
+    font-size: 2rem;
+}
+
+.my_content_main {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.my_content_main_form {
+    width: 50vw;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(240,235,248);
+    border-radius: 10px;
+}
+
+
+
+.my_content_element {
+    width: 75%;
+    border-radius: 10px;
+    border: 3px solid gray;
+    margin: 1rem;
+    padding: .5rem;
+    background: white;
+}
+
+.my_content_element:hover {
+    border: 3px solid rgb(115,47,249);
+    transition-duration: 200ms;
+}
+
+.element_h {
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.element_h:hover {
+    color: rgba(115,47,249, .97);
+    
+}
+
+.my_content_main_buttons {
+    width: 25vw;
+    /* background: grey; */
+    /* height: 30vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.my_content_button {
+    width: 70%;
+    padding:  .6rem 0;
+    background: rgba(115,47,249, .97);
+    color: white;
+    border-radius: 5px;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.my_content_button:hover {
+    transform: scale(1.05);
+    transition-duration: 200ms;
+}
+
+
 @media(max-width: 700px) {
     .home_image_label {
         font-size: 1.2rem;
@@ -429,6 +516,10 @@ align-items: center;
         /* border-radius: 0; */
         margin-top: 5rem;
         margin-bottom: 2rem;
+
+        /* position: fixed;
+        z-index: 99999; */
+
     }
 
     .form_page_left_button {

@@ -13,7 +13,7 @@ const Navbar = function(props) {
             
             <li><Link className={cl.links} to='/my' >Мое</Link></li>
 
-            <li><Link className={cl.links} to='/form' >Форма</Link></li>
+            {/* <li><Link className={cl.links} to='/form' >Форма</Link></li> */}
             
             
         </ul>
