@@ -183,7 +183,7 @@ body {
 
 .form_page_left {
     width: 25vw;
-    height: 45vh;
+    height: 75vh;
     background: rgb(240,235,248);
     margin-right: 5vw;
     display: flex;
@@ -417,6 +417,13 @@ align-items: center;
     margin: 1rem;
     padding: .5rem;
     background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.my_content_element_del {
+    background: red;
 }
 
 .my_content_element:hover {
@@ -554,6 +561,27 @@ align-items: center;
 
     .new_option_button {
         width: 40%;
+    }
+
+    /* MyPage */
+
+    .my_content_main {
+        flex-direction: column;
+    }
+
+    .my_content_main_buttons {
+        /* flex-direction: row; */
+        margin-top: 5vh;
+        width: 75vw;
+    }
+
+    .my_content_button {
+
+    }
+
+    .my_content_main_form {
+        
+        width: 75vw;
     }
 
 }

@@ -95,9 +95,12 @@
 
     .navbar_links {
         /* display: none; */
+        /* padding-left: 1px; */
+        justify-content: flex-start;
     }
 
     .links {
         font-size: 1.5rem;
+        margin-right: .5rem;
     }
 }
