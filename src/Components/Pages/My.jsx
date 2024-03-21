@@ -50,6 +50,7 @@ function My() {
             {
                 "id": 1,
                 "title": "Вопрос 1",
+                "type": "checkbox",
                 "choices": [
                     {
                         "id": 1,
@@ -64,6 +65,7 @@ function My() {
             {
                 "id": 2,
                 "title": "Вопрос 2",
+                "type": "radio",
                 "choices": [
                     {
                         "id": 3,
@@ -113,7 +115,7 @@ function My() {
               {/* <h className='element_h'><Link className='element_h' to="/form" >{form.title}</Link></h> */}
               <div>
                 <h className='element_h' onClick={() => router(`/forms/${form.id}`) }>{form.title}</h>
-                <p>{form.description}</p>
+                {/* <p>{form.description}</p> */}
               </div>
 
               <div>
@@ -125,9 +127,9 @@ function My() {
         </div>
 
         <div className='my_content_main_buttons'>
-            <button type='buttom' className='my_content_button' onClick={() => addForm()}>Создать форму</button>
-            <button type='buttom' className='my_content_button'>Создать голосование</button>
-            <button type='buttom' className='my_content_button'>Создать тестирование</button>
+            <button type='button' className='my_content_button' onClick={() => addForm()}>Создать форму</button>
+            {/* <button type='buttom' className='my_content_button'>Создать голосование</button>
+            <button type='buttom' className='my_content_button'>Создать тестирование</button> */}
         </div>
 
       </div>

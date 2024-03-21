@@ -111,11 +111,12 @@ function FormPage() {
         console.log(form)
     }
 
-    function addQuestion(type = "radio") {
+    function addQuestion(type) {
         var newForm = {...form}
         newForm.questions.push({
             //"id": 4,
             "title": "Новый вопрос",
+            "type": type,
             "choices": [
                 {
                     //"id": 8,
@@ -274,9 +275,9 @@ function FormPage() {
 
             <h className='form_page_left_label' >Добавить вопрос</h>
             <button type='button' className='form_page_left_button' onClick={() => addQuestion("radio")}>Выбор одного варианта</button>
-            {/* <button type='button' className='form_page_left_button' onClick={() => addQuestion("checkbox")}>Выбор нескольких</button> */}
-            <button type='button' className='form_page_left_button'>Строка</button>
-            <button type='button' className='form_page_left_button'>Текстовое поле</button>
+            <button type='button' className='form_page_left_button' onClick={() => addQuestion("checkbox")}>Выбор нескольких</button>
+            {/* <button type='button' className='form_page_left_button'>Строка</button>
+            <button type='button' className='form_page_left_button'>Текстовое поле</button> */}
         </div>
         <div className='form_page_main'>
 
@@ -321,7 +322,7 @@ function FormPage() {
                                 
                                 {question.choices.map((opt, j) =>
                                 <div >
-                                    {/* <input type={question.questionType} name={index} /> */}
+                                    <input type={question.type} name={index} />
                                     <input className='form_editor_element_option' type='text' value={opt.name} onChange={(e) => {ChangeChoice(e.target.value, index, j)}}/>
                                     <font className='form_editor_x'>
                                         <IconContext.Provider  value={{ size: '1.2rem', className: "global-class-name", color:'grey' }}>

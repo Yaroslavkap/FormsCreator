@@ -23,7 +23,7 @@ const Navbar = function(props) {
             :
             <ul className={cl.navbar_links}>
               <li><Link className={cl.links} to='/home'>Главное</Link></li>
-              <li><Link className={cl.links} to='/login' >Мое</Link></li>
+              {/* <li><Link className={cl.links} to='/login' >Мое</Link></li> */}
               <li><Link className={cl.links} to='/login' >Вход</Link></li>
           </ul>
             }

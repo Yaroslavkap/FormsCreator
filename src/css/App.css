@@ -406,6 +406,8 @@ align-items: center;
     align-items: center;
     background: rgb(240,235,248);
     border-radius: 10px;
+
+    margin-bottom: 3rem;
 }
 
 
@@ -422,8 +424,23 @@ align-items: center;
     justify-content: space-between;
 }
 
-.my_content_element_del {
+/* .my_content_element_del {
     background: red;
+} */
+.my_content_element_del {
+    width: 5rem;
+    height: 2rem;
+    /* padding: .7rem .2rem; */
+    background-color: red;
+    color: white;
+    margin-top: 1rem;
+    border-radius: 7px;
+    font-size: 1rem;
+}
+
+.my_content_element_del:hover {
+    transform: scale(1.05);
+    transition-duration: 200ms;
 }
 
 .my_content_element:hover {

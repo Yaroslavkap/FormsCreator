@@ -5,6 +5,8 @@ const initialState = {
       access: null,
       isLoading: false,
       error:  null,
+      //
+      refresh: null,
     },
     profileData: {
       profile: null,
@@ -34,6 +36,25 @@ export const authReducer = createSlice({
           error:  null,
         }
       }),
+//
+      loginSucessRefresh: (state, action) => ({
+        ...state,
+        authData: {
+          ...state.authData,
+          refresh: action.payload,
+          isLoading: false,
+          error:  null,
+        }
+      }),
+      // idSucess: (state, action) => ({
+      //   ...state,
+      //   authData: {
+      //     ...state.authData,
+      //     user_id: action.payload,
+      //     isLoading: false,
+      //     error:  null,
+      //   }
+      // }),
       loginFailure: (state, action) => ({
         ...state,
         authData: {
@@ -70,6 +91,6 @@ export const authReducer = createSlice({
     },
   })
 
-export const { loadProfileStart, loadProfileSucess, loadProfileFailure, loginStart, loginSucess, loginFailure, logoutSuccess } = authReducer.actions
+export const { loadProfileStart, loadProfileSucess, loadProfileFailure, loginStart, loginSucess,loginSucessRefresh, loginFailure, logoutSuccess } = authReducer.actions
 
 export default authReducer.reducer
