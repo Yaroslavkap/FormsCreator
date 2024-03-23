@@ -136,6 +136,67 @@ function FormPage() {
         setForm(newForm)
         console.log(form)
     }
+// Шаблоны:
+    function Yes_No() {
+        var newForm = {...form}
+        newForm.questions.push({
+            //"id": 4,
+            "title": "Вы согласны ...",
+            "type": "radio",
+            "choices": [
+                {
+                    //"id": 8,
+                    "name": "Да"
+                },
+                {
+                    //"id": 9,
+                    "name": "Нет"
+                },
+                {
+                    //"id": 10,
+                    "name": "Сомневаюсь ответить"
+                }
+            ]
+        }
+        )
+        setForm(newForm)
+        console.log(form)
+    }
+
+    function Raiting() {
+        var newForm = {...form}
+        newForm.questions.push({
+            //"id": 4,
+            "title": "Оцените от 1 до 5",
+            "type": "radio",
+            "choices": [
+                {
+                    //"id": 8,
+                    "name": "1"
+                },
+                {
+                    //"id": 9,
+                    "name": "2"
+                },
+                {
+                    //"id": 10,
+                    "name": "3"
+                },
+                {
+                    //"id": 8,
+                    "name": "4"
+                },
+                {
+                    //"id": 9,
+                    "name": "5"
+                },
+                
+            ]
+        }
+        )
+        setForm(newForm)
+        console.log(form)
+    }
 
     async function saveForm() {
         try {
@@ -268,16 +329,20 @@ function FormPage() {
             :
             <div className='form_page'>
         <div className='form_page_left'>
-            <h className='form_page_left_label'>Сохранение:</h>
-            <button style={{marginBottom:"20%"}}  type='button' className='form_page_left_button' onClick={() => saveForm()}>Сохранить</button>
+            <p className='form_page_left_label'>Сохранение:</p>
+            <button style={{marginBottom:"5rem"}}  type='button' className='form_page_left_button' onClick={() => saveForm()}>Сохранить</button>
 
 
 
-            <h className='form_page_left_label' >Добавить вопрос</h>
+            <p className='form_page_left_label' >Добавить вопрос</p>
             <button type='button' className='form_page_left_button' onClick={() => addQuestion("radio")}>Выбор одного варианта</button>
             <button type='button' className='form_page_left_button' onClick={() => addQuestion("checkbox")}>Выбор нескольких</button>
             {/* <button type='button' className='form_page_left_button'>Строка</button>
             <button type='button' className='form_page_left_button'>Текстовое поле</button> */}
+
+            <p style={{marginTop:"5rem"}} className='form_page_left_label' >Шаблоны</p>
+            <button type='button' className='form_page_left_button' onClick={() => Yes_No()}>Да/Нет</button>
+            <button type='button' className='form_page_left_button' onClick={() => Raiting()}>Рейтинг(1-5)</button>
         </div>
         <div className='form_page_main'>
 

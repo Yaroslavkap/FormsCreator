@@ -57,3 +57,16 @@
     transform: scale(1.05);
     transition-duration: 200ms;
 }
+
+
+@media(max-width: 700px) {
+    .log_form { 
+        width: 90%;
+        /* height: 55%; */
+    }
+
+    .log_form label {
+        margin-left: 1rem;
+    }
+}
+

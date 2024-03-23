@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getAccessToken } from '../store/auth/actionCreator';
+import { getAccessToken, getRefToken } from '../store/auth/actionCreator';
 import { store } from '../store';
 
 export default class AppService {
@@ -25,9 +25,9 @@ export default class AppService {
     
     // }
 
-    static async getMyForms() {
+    static async getMyForms(id) {
         const accessToken = await store.dispatch(getAccessToken())
-        console.log(accessToken)
+        //console.log(accessToken)
     
         const config = {
             headers: {
@@ -36,7 +36,7 @@ export default class AppService {
         };
     
         try {
-            const response = await axios.get("http://127.0.0.1:8000/show_votings/1/", config);
+            const response = await axios.get(`http://127.0.0.1:8000/show_votings/${id}/`, config);
             return response;
         } catch (error) {
             console.error(error);
@@ -53,7 +53,7 @@ export default class AppService {
 
     static async getFormById(id) {
         const accessToken = await store.dispatch(getAccessToken())
-        console.log(accessToken)
+        //console.log(accessToken)
     
         const config = {
             headers: {
@@ -72,7 +72,7 @@ export default class AppService {
 
     static async PostForm(forms) {
         const accessToken = await store.dispatch(getAccessToken());
-        console.log(accessToken);
+        //console.log(accessToken);
     
         const config = {
             headers: {
@@ -91,7 +91,7 @@ export default class AppService {
 
     static async UpdateForm(form, id) {
         const accessToken = await store.dispatch(getAccessToken());
-        console.log(accessToken);
+        //console.log(accessToken);
     
         const config = {
             headers: {
@@ -110,7 +110,7 @@ export default class AppService {
 
     static async delFormById(id) {
         const accessToken = await store.dispatch(getAccessToken())
-        console.log(accessToken)
+        //console.log(accessToken)
     
         const config = {
             headers: {
@@ -127,6 +127,26 @@ export default class AppService {
         }
     }
     
+    static async logOut() {
+        const accessToken = await store.dispatch(getAccessToken())
+        const refreshToken = await store.dispatch(getRefToken())
+        //console.log(refreshToken)
+        const refObj = {"refresh": refreshToken}
+    
+        const config = {
+            headers: {
+                'authorization': `Bearer ${accessToken}`
+            }
+        };
+    
+        try {
+            const response = await axios.post(`http://127.0.0.1:8000/api/logout/`, refObj, config);
+            return response;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
  
 }
 

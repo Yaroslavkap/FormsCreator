@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useNavigate, useParams} from 'react-router-dom'
 import AppService from '../API/AppService';
 import { useFetching } from '../hooks/useFetching';
 
@@ -7,6 +7,7 @@ import { useFetching } from '../hooks/useFetching';
 function My() {
   const [forms, setForms] = useState([])
   const router = useNavigate()
+  const params = useParams()
   // const [forms, setForms] = useState([
   //   { formName: "Form1",
   //     disc: "disc1"
@@ -19,7 +20,7 @@ function My() {
   //   }
   // ])
   const [fetchForms, isFormsLoading, formError] = useFetching(async () => {
-    const response = await AppService.getMyForms();
+    const response = await AppService.getMyForms(params.id);
     setForms(response.data)
     
   })
@@ -27,13 +28,14 @@ function My() {
 
   useEffect( () => {
     fetchForms()
-  }, [] )
+  }, [params.id] )
   console.log(forms)
 
   async function postForm(form) {
     try {
         const response = await AppService.PostForm(form);
         console.log(response.data); // Вывод ответа от сервера после успешной отправки формы
+        fetchForms()
     } catch (error) {
         console.error(error); // Обработка ошибки, если запрос не удался
     }
@@ -84,7 +86,7 @@ function My() {
         ]
     }
     newForms.push(newForm)
-    setForms(newForms)
+    //setForms(newForms)
     console.log(forms) 
     //postForm(JSON.stringify(newForm))
     postForm(newForm)

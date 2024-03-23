@@ -18,7 +18,7 @@ import { Navigate } from "react-router-dom"
 
 export const allRoutes = [
     {path: '/home', element: <Home/>, exact:true},
-    {path: '/my', element: <My/>, exact:true},
+    {path: '/my/:id', element: <My/>, exact:true},
     {path: '/forms/:id', element: <FormPage/>, exact:true},
     {path: '/login', element: <Login/>, exact:true},
     //{path: '/my', element: Logged() ? <My /> : <Navigate to="/login" />, exact:true},

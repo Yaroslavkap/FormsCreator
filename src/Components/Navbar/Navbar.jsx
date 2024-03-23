@@ -1,13 +1,25 @@
 import React from "react";
 import cl from './Navbar.module.css'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { useSelector } from "react-redux";
+import { store } from "../store";
+import { getId } from "../store/auth/actionCreator";
 
 const Navbar = function(props) {
      
     const isLoggedIn = useSelector(
       (state) => !!state.auth.authData.access
     );
+
+    // async function getMyId() {
+        
+    //     const user_id = await store.dispatch(getId())
+    //     console.log(user_id)
+    //     return user_id
+    // }
+
+    const user_id = store.dispatch(getId())
+    const router = useNavigate()
 
     return(
       <div className={ cl.navbar }>
@@ -17,7 +29,8 @@ const Navbar = function(props) {
             ?
             <ul className={cl.navbar_links}>
               <li><Link className={cl.links} to='/home'>Главное</Link></li>
-              <li><Link className={cl.links} to='/my' >Мое</Link></li>
+              {/* <li><Link className={cl.links} onClick={() => router(`/my/${user_id}`) } >Мое</Link></li> */}
+              <li className={cl.links} onClick={() => router(`/my/${user_id}`) }>Мое</li>
               <li><Link className={cl.links} to='/login' >Выход</Link></li>
             </ul>
             :
