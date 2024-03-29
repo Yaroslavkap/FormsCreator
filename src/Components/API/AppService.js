@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getAccessToken, getRefToken } from '../store/auth/actionCreator';
+import { logoutSuccess } from '../store/auth/authReducer';
 import { store } from '../store';
 
 export default class AppService {
@@ -131,7 +132,7 @@ export default class AppService {
         const accessToken = await store.dispatch(getAccessToken())
         const refreshToken = await store.dispatch(getRefToken())
         //console.log(refreshToken)
-        const refObj = {"refresh": refreshToken}
+        const refObj = {"refresh_token": refreshToken}
     
         const config = {
             headers: {
@@ -141,6 +142,26 @@ export default class AppService {
     
         try {
             const response = await axios.post(`http://127.0.0.1:8000/api/logout/`, refObj, config);
+            store.dispatch(logoutSuccess())
+            return response;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+
+    static async getFormToAnsById(id) {
+        const accessToken = await store.dispatch(getAccessToken())
+        //console.log(accessToken)
+    
+        const config = {
+            headers: {
+                'authorization': `Bearer ${accessToken}`
+            }
+        };
+    
+        try {
+            const response = await axios.get(`http://127.0.0.1:8000/api/response-voting/${id}/`, config);
             return response;
         } catch (error) {
             console.error(error);

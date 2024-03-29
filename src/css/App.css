@@ -427,6 +427,11 @@ align-items: center;
 /* .my_content_element_del {
     background: red;
 } */
+
+.my_content_element_buttons {
+    display: flex;
+    flex-direction: column;
+}
 .my_content_element_del {
     width: 5rem;
     height: 2rem;

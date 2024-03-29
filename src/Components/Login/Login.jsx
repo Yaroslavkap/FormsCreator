@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./Login.css"
 //import { useAppDispatch } from '../store'
-import { loginUser, logoutUser } from '../store/auth/actionCreator'
+import { loginUser } from '../store/auth/actionCreator'
 import { useDispatch,  useSelector} from 'react-redux'
 import { getRefToken, getAccessToken, getId } from '../store/auth/actionCreator';
 import { store } from '../store';
@@ -41,6 +41,8 @@ const Login = () => {
         try {
             const response = await AppService.logOut();
             console.log(response.data); 
+            // dispatch(logoutUser())
+
         } catch (error) {
             console.error(error);
         }

@@ -28,7 +28,7 @@ function Home() {
 
       <div className='home_main_box'>
 
-        <h className='home_main_label' data-aos="zoom-out" data-aos-offset="300">Создавай опросы без лишних усилий в MAIforms</h>
+        <p className='home_main_label' data-aos="zoom-out" data-aos-offset="300">Создавай опросы без лишних усилий в MAIforms</p>
 
         <div className='home_form'>
           <div className='home_form_element' data-aos="zoom-in" data-aos-offset="300">
@@ -37,7 +37,7 @@ function Home() {
               <FaMousePointer />
             </IconContext.Provider>
             
-            <h className='home_form_element_label'>Удобство использования</h>
+            <p className='home_form_element_label'>Удобство использования</p>
           </div>
 
           <div className='home_form_element' data-aos="zoom-in" data-aos-offset="300">
@@ -45,21 +45,21 @@ function Home() {
             <TbFileExport />
           </IconContext.Provider>
             
-            <h className='home_form_element_label'> Экспорт результатов</h>
+            <p className='home_form_element_label'> Экспорт результатов</p>
           </div>
 
           <div className='home_form_element' data-aos="zoom-in" data-aos-offset="200">
           <IconContext.Provider value={{ size: '4rem', className: "global-class-name", color:'rgb(115,47,249 )' }}>
             <TbBinaryTree />
           </IconContext.Provider>
-          <h className='home_form_element_label'>Система логики опроса</h>
+          <p className='home_form_element_label'>Система логики опроса</p>
           </div>
 
           <div className='home_form_element' data-aos="zoom-in" data-aos-offset="200">
             <IconContext.Provider value={{ size: '4rem', className: "global-class-name", color:'rgb(115,47,249 )' }}>
               <IoShareSocial/>
             </IconContext.Provider>
-            <h className='home_form_element_label' style={{textAlign:"center"}}>Простое распространение</h>
+            <p className='home_form_element_label' style={{textAlign:"center"}}>Простое распространение</p>
           </div>
 
         </div>
@@ -74,8 +74,8 @@ function Home() {
       </div>
 
       <div className='home_ending'>
-        <h className='home_ending_label'>Начни прямо сейчас</h>
-        <h className='home_ending_label'>...</h>
+        <p className='home_ending_label'>Начни прямо сейчас</p>
+        <p className='home_ending_label'>...</p>
       </div>
 
       {/* <div>

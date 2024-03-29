@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import FormEditor from '../FormEditor'
+//import FormEditor from '../FormEditor'
 import { IoMdClose } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IconContext } from "react-icons";

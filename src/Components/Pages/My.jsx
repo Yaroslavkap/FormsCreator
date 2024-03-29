@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Link, useNavigate, useParams} from 'react-router-dom'
+import { useNavigate, useParams} from 'react-router-dom'
 import AppService from '../API/AppService';
 import { useFetching } from '../hooks/useFetching';
 
@@ -107,7 +107,7 @@ function My() {
   return (
     <div className='my_content'>
       <div className='my_content_header'>
-        <h className='my_content_header_h'>Мои формы</h>
+        <p className='my_content_header_h'>Мои формы</p>
       </div>
       
       <div className='my_content_main'>
@@ -116,13 +116,15 @@ function My() {
             <div className='my_content_element'>
               {/* <h className='element_h'><Link className='element_h' to="/form" >{form.title}</Link></h> */}
               <div>
-                <h className='element_h' onClick={() => router(`/forms/${form.id}`) }>{form.title}</h>
+                <p className='element_h' onClick={() => router(`/forms/${form.id}`) }>{form.title}</p>
                 {/* <p>{form.description}</p> */}
               </div>
 
-              <div>
+              <div className='my_content_element_buttons'>
                 <button className='my_content_element_del' onClick={() => delForm(form.id)}>Удалить</button>
+                <button style={{background:"rgb(115,47,249)"}} className='my_content_element_del' onClick={() => router(`/ans/${form.id}`) }>Перейти</button>
               </div>
+
               
             </div>
           )}
