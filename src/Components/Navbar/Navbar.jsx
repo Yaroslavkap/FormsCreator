@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import cl from './Navbar.module.css'
 import {Link, useNavigate} from 'react-router-dom'
 import { useSelector } from "react-redux";
@@ -11,15 +11,18 @@ const Navbar = function(props) {
       (state) => !!state.auth.authData.access
     );
 
-    // async function getMyId() {
-        
-    //     const user_id = await store.dispatch(getId())
-    //     console.log(user_id)
-    //     return user_id
-    // }
 
     const user_id = store.dispatch(getId())
     const router = useNavigate()
+
+  //   useEffect(() => {
+  //     if (!isLoggedIn) {
+  //         // Действия при изменении isLoggedIn на false
+  //         console.log('isLoggedIn is now false');
+  //         // Другие действия, например, перенаправление пользователя
+  //         // router('/login');
+  //     }
+  // }, [isLoggedIn, router]);
 
     return(
       <div className={ cl.navbar }>

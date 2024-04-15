@@ -28,8 +28,6 @@ export default class AppService {
 
     static async getMyForms(id) {
         const accessToken = await store.dispatch(getAccessToken())
-        //console.log(accessToken)
-    
         const config = {
             headers: {
                 'authorization': `Bearer ${accessToken}`
@@ -168,6 +166,26 @@ export default class AppService {
             throw error;
         }
     }
+
+    static async AnsForm(answer, id) {
+        const accessToken = await store.dispatch(getAccessToken());
+        //console.log(accessToken);
+    
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        };
+    
+        try {
+            const response = await axios.post(`http://127.0.0.1:8000/api/answer-voting/${id}/`, answer, config);
+            return response;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
  
 }
+
 

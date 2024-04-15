@@ -11,6 +11,8 @@ const Answers = ({id}) => {
     const [answers, setAnswers] = useState([])
     const user_id = store.dispatch(getId())
 
+    const [page, setPage] = useState(0)
+
     const [fetchForm, isFormLoading, formError] = useFetching(async () => {
         const response = await AppService.getFormToAnsById(id);
         setForm(response.data)
@@ -23,16 +25,47 @@ const Answers = ({id}) => {
       }, [] )
       console.log(form)
 
-      function ChangeAns(index, questionId, choiceId) {
-        var newAnswers = {...answers}
-        newAnswers[index] = {
-            "user": user_id,
-            "question": questionId,
-            "choice": choiceId
+      function ChangeAns( questionId, choiceId, checked) {
+        var newAnswers = [...answers]
+        if(checked) {
+            newAnswers.push({
+                "user": user_id,
+                "question": questionId,
+                "choice": choiceId
+            })
+            newAnswers = newAnswers.filter((answer, index) => {
+                return index === newAnswers.findIndex(a => 
+                    a.user === answer.user && a.question === answer.question && a.choice === answer.choice
+                )
+            })
+        } else {
+            newAnswers = newAnswers.filter(answer => {
+                return !(answer.user === user_id && answer.question === questionId && answer.choice === choiceId);
+            })
         }
         setAnswers(newAnswers)
-        console.log(answers)
+        console.log(newAnswers)
+        // setAnswers(newAnswers, () => {
+        //     console.log(newAnswers); // Вывод обновленного значения answers
+        // });
+    
+        console.log(checked)
     }
+
+    async function sendAns(ans, page) {
+        try {
+            const response = await AppService.AnsForm(ans, id);
+            console.log(response.data); 
+            setAnswers([])
+            if(page < form.pages.length - 1 ) {
+                setPage(page + 1)
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
   return (
     // <div className='ans'>Answers {id}</div>
     <div>
@@ -55,8 +88,9 @@ const Answers = ({id}) => {
                     
                     
                     <div className='form_editor'>
-                    {form && form.questions ? (
-                                form.questions.map((question, index) => (
+                    {/* {form && form.questions ? ( */}
+                    {form && form.pages && form.pages[page] && form.pages[page].questions ? (
+                                form.pages[page].questions.map((question, index) => (
                                     <div className='form_editor_element'>
                                     
                                         {/* <input className='form_editor_element_label' type='text' value={question.title} /> */}
@@ -66,7 +100,7 @@ const Answers = ({id}) => {
                                         <div className='a_option'>
                                             {/* <input type={question.type} name={index} />
                                             <input className='form_editor_element_option' type='text' value={opt.name} /> */}
-                                            <input type={question.type} name={index} onChange={() =>{ChangeAns(index, question.id, opt.id)}}/>
+                                            <input type={question.type} name={index} onClick={(e) =>{ChangeAns(question.id, opt.id, e.target.checked)}}/>
                                             <span className='a_form_editor_element_option'>{opt.name}</span>
                                         </div>
                                         )}
@@ -80,14 +114,13 @@ const Answers = ({id}) => {
                     )}
                     
                     </div>
-                    {/* <button>hhhh</button> */}
                     {/* <div className='ans_b_div'>
                     <button className='ans_button'>Отправить</button>
                     </div> */}
                 </div>
 
                 <div className='ans_b_div'>
-                    <button className='ans_button'>Отправить</button>
+                    <button type='button' className='ans_button' onClick={() => sendAns(answers, page)}>Далее</button>
                 </div>
                 
        

@@ -376,6 +376,31 @@ align-items: center;
     transition-duration: 200ms;
 }
 
+.pagination {
+    width: 100%;
+    background: white;
+    border-top: 4px solid rgb(115,47,249);
+    display: flex;
+    justify-content: center;
+}
+
+.pagination button {
+    padding: .2rem .2rem;
+    margin-right: .5rem;
+    margin-bottom: 1rem;
+    background-color: rgb(240,235,248);
+    /* color: white; */
+    margin-top: 1rem;
+    border-radius: 7px;
+    font-size: 1rem;
+
+}
+
+.pagination button:hover {
+    transform: scale(1.05);
+    transition-duration: 200ms;
+}
+
 /* My */
 
 .my_content {

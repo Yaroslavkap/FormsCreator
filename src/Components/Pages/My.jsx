@@ -44,47 +44,71 @@ function My() {
   function addForm() {
     const newForms = [...forms]
     const newForm = {
-        "id": 1,
-        "title": "Новое голосование",
-        "description": "Описание нового голосования",
-        "author": 1,
-        "questions": [
-            {
-                "id": 1,
-                "title": "Вопрос 1",
-                "type": "checkbox",
-                "choices": [
-                    {
-                        "id": 1,
-                        "name": "Вариант ответа 1"
-                    },
-                    {
-                        "id": 2,
-                        "name": "Вариант ответа 2"
-                    }
-                ]
-            },
-            {
-                "id": 2,
-                "title": "Вопрос 2",
-                "type": "radio",
-                "choices": [
-                    {
-                        "id": 3,
-                        "name": "Вариант ответа 1"
-                    },
-                    {
-                        "id": 4,
-                        "name": "Вариант ответа 2"
-                    },
-                    {
-                        "id": 5,
-                        "name": "Вариант ответа 3"
-                    }
-                ]
-            }
-        ]
-    }
+      "title": "Название опросаИЗМ",
+      "description": "Описание опроса",
+      "author": 1,
+      "pages": [
+          {
+              "title": "Заголовок страницы 1ИЗМ",
+              "questions": [
+                  {
+                      "title": "Вопрос 1 на странице 1ИЗМ",
+                      "type": "checkbox",
+                      "choices": [
+                          {
+                              "name": "Вариант ответа 1ИЗМ"
+                          },
+                          {
+                              "name": "Вариант ответа 2"
+                          }
+                      ]
+                  },
+                  {
+                      "title": "Вопрос 2 на странице 1",
+                      "type": "checkbox",
+                      "choices": [
+                          {
+                              "name": "Вариант ответа 1"
+                          },
+                          {
+                              "name": "Вариант ответа 2"
+                          }
+                      ]
+                  }
+              ]
+          },
+          {
+              "title": "Заголовок страницы 2",
+              "questions": [
+                  {
+                      "title": "Вопрос 1 на странице 2",
+                      "type": "checkbox",
+                      "choices": [
+                          {
+                              "name": "Вариант ответа 1"
+                          },
+                          {
+                              "name": "Вариант ответа 2"
+                          }
+                      ]
+                  },
+                  {
+                      "title": "Вопрос 2 на странице 2",
+                      "type": "checkbox",
+                      "choices": [
+                          {
+                              "name": "Вариант ответа 1"
+                          },
+                          {
+                              "name": "Вариант ответа 2"
+                          }
+                      ]
+                  }
+              ]
+          }
+      ]
+  }
+  
     newForms.push(newForm)
     //setForms(newForms)
     console.log(forms) 
@@ -117,7 +141,7 @@ function My() {
               {/* <h className='element_h'><Link className='element_h' to="/form" >{form.title}</Link></h> */}
               <div>
                 <p className='element_h' onClick={() => router(`/forms/${form.id}`) }>{form.title}</p>
-                {/* <p>{form.description}</p> */}
+                <p>{form.description}</p>
               </div>
 
               <div className='my_content_element_buttons'>

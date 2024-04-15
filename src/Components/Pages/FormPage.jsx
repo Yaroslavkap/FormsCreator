@@ -12,6 +12,8 @@ function FormPage() {
     const [form, setForm] = useState([])
     const params = useParams()
 
+    const [page, setPage] = useState(0)
+
     const [fetchForm, isFormLoading, formError] = useFetching(async () => {
         const response = await AppService.getFormById(params.id);
         setForm(response.data)
@@ -74,46 +76,56 @@ function FormPage() {
         console.log(form)
     }
 
-    function ChangeQuestion(text, index) {
+    function ChangeQuestion(text, index, page) {
         var newForm = {...form}
-        newForm.questions[index].title = text
+        newForm.pages[page].questions[index].title = text
         setForm(newForm)
         console.log(form)
     }
 
-    function ChangeChoice(text, i, j) {
+    function ChangeChoice(text, i, j, page) {
         
         var newForm = {...form}
-        newForm.questions[i].choices[j].name = text
+        newForm.pages[page].questions[i].choices[j].name = text
         setForm(newForm)
         console.log(form)
     }
 
-    function removeChoice(i, j) {
+    function removeChoice(i, j, page) {
         var newForm = {...form}
-        if (newForm.questions[i].choices.length > 1) {
-            newForm.questions[i].choices.splice(j, 1)
+        if (newForm.pages[page].questions[i].choices.length > 1) {
+            newForm.pages[page].questions[i].choices.splice(j, 1)
             setForm(newForm)
             console.log(form)
         }
     }
 
-    function removeQuestion(i) {
+    function removeQuestion(i, page) {
         var newForm = {...form}
-        newForm.questions.splice(i, 1)
+        newForm.pages[page].questions.splice(i, 1)
         setForm(newForm)
     }
 
-    function addChoice(i) {
+    function addChoice(i, page) {
         var newForm = {...form}
-        newForm.questions[i].choices.push({name: "Вариант ответа"})
+        newForm.pages[page].questions[i].choices.push({name: "Вариант ответа"})
         setForm(newForm)
         console.log(form)
     }
 
-    function addQuestion(type) {
+    function addPage() {
         var newForm = {...form}
-        newForm.questions.push({
+        newForm.pages.push({
+            "title": "Новая страница",
+            "questions": [],
+        })
+        setForm(newForm)
+        console.log(form)
+    }
+
+    function addQuestion(type, page) {
+        var newForm = {...form}
+        newForm.pages[page].questions.push({
             //"id": 4,
             "title": "Новый вопрос",
             "type": type,
@@ -137,9 +149,9 @@ function FormPage() {
         console.log(form)
     }
 // Шаблоны:
-    function Yes_No() {
+    function Yes_No(page) {
         var newForm = {...form}
-        newForm.questions.push({
+        newForm.pages[page].questions.push({
             //"id": 4,
             "title": "Вы согласны ...",
             "type": "radio",
@@ -163,9 +175,9 @@ function FormPage() {
         console.log(form)
     }
 
-    function Raiting() {
+    function Raiting(page) {
         var newForm = {...form}
-        newForm.questions.push({
+        newForm.pages[page].questions.push({
             //"id": 4,
             "title": "Оцените от 1 до 5",
             "type": "radio",
@@ -335,14 +347,14 @@ function FormPage() {
 
 
             <p className='form_page_left_label' >Добавить вопрос</p>
-            <button type='button' className='form_page_left_button' onClick={() => addQuestion("radio")}>Выбор одного варианта</button>
-            <button type='button' className='form_page_left_button' onClick={() => addQuestion("checkbox")}>Выбор нескольких</button>
+            <button type='button' className='form_page_left_button' onClick={() => addQuestion("radio", page)}>Выбор одного варианта</button>
+            <button type='button' className='form_page_left_button' onClick={() => addQuestion("checkbox", page)}>Выбор нескольких</button>
             {/* <button type='button' className='form_page_left_button'>Строка</button>
             <button type='button' className='form_page_left_button'>Текстовое поле</button> */}
 
             <p style={{marginTop:"5rem"}} className='form_page_left_label' >Шаблоны</p>
-            <button type='button' className='form_page_left_button' onClick={() => Yes_No()}>Да/Нет</button>
-            <button type='button' className='form_page_left_button' onClick={() => Raiting()}>Рейтинг(1-5)</button>
+            <button type='button' className='form_page_left_button' onClick={() => Yes_No(page)}>Да/Нет</button>
+            <button type='button' className='form_page_left_button' onClick={() => Raiting(page)}>Рейтинг(1-5)</button>
         </div>
         <div className='form_page_main'>
 
@@ -354,19 +366,20 @@ function FormPage() {
             
             
             <div className='form_editor'>
-            {form && form.questions ? (
-                        form.questions.map((question, index) => (
+            {/* {form && form.pages[page].questions ? ( */}
+            {form && form.pages && form.pages[page] && form.pages[page].questions ? (
+                        form.pages[page].questions.map((question, index) => (
                             <div className='form_editor_element'>
                                 {/* {question.questionText} */}
                                 <div className='form_editor_element_bin'>
                                     <div className='form_editor_element_bin_hover'>
                                         <IconContext.Provider  value={{ size: '1.5rem', className: "global-class-name", color:'grey' }}>
-                                            <RiDeleteBin6Line onClick={() => removeQuestion(index)}/>
+                                            <RiDeleteBin6Line onClick={() => removeQuestion(index, page)}/>
                                         </IconContext.Provider>
                                     </div>
                                 
                                 </div>
-                                <input className='form_editor_element_label' type='text' value={question.title} onChange={(e) =>{ChangeQuestion(e.target.value, index)}}/>
+                                <input className='form_editor_element_label' type='text' value={question.title} onChange={(e) =>{ChangeQuestion(e.target.value, index, page)}}/>
 
                                 {/* {question.choices ? (
                                     form.question.choices.map((opt, j) =>
@@ -388,10 +401,10 @@ function FormPage() {
                                 {question.choices.map((opt, j) =>
                                 <div >
                                     <input type={question.type} name={index} />
-                                    <input className='form_editor_element_option' type='text' value={opt.name} onChange={(e) => {ChangeChoice(e.target.value, index, j)}}/>
+                                    <input className='form_editor_element_option' type='text' value={opt.name} onChange={(e) => {ChangeChoice(e.target.value, index, j, page)}}/>
                                     <font className='form_editor_x'>
                                         <IconContext.Provider  value={{ size: '1.2rem', className: "global-class-name", color:'grey' }}>
-                                            <IoMdClose onClick={() => removeChoice(index, j)}/>
+                                            <IoMdClose onClick={() => removeChoice(index, j, page)}/>
                                         </IconContext.Provider>
                                     </font>
                                     
@@ -399,12 +412,21 @@ function FormPage() {
                                 )}
                                 
                                  {/* <div onClick={() => addOption(index)}>Добавить вариант ответа</div> */}
-                                <button className='new_option_button' type='button' onClick={() => addChoice(index)}>Добавить</button> 
+                                <button className='new_option_button' type='button' onClick={() => addChoice(index, page)}>Добавить</button> 
                     </div>
                         ))
                     ) : (
                         <div>No questions available</div>
             )}
+
+            <div className='pagination'>
+                {/* <button type='button' onClick={() => setPage(0)}>1</button>
+                <button type='button' onClick={() => setPage(1)}>2</button> */}
+                {form && form.pages && form.pages.map((page, index) => (
+                    <button type='button' onClick={() => setPage(index)}>{index + 1}</button>
+                ))}
+                <button onClick={() => addPage()}>Добавить</button>
+            </div>
             
             </div>
         </div>

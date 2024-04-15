@@ -23,7 +23,4 @@ export const allRoutes = [
     {path: '/forms/:id', element: <FormPage/>, exact:true},
     {path: '/ans/:id', element: <FormAns/>, exact:true},
     {path: '/login', element: <Login/>, exact:true},
-    //{path: '/my', element: Logged() ? <My /> : <Navigate to="/login" />, exact:true},
-    // {path: '/films', element: <Films/>, exact:true},
-    // {path: '/films/:id', element: <FilmIdPage/>, exact:true}
 ]
