@@ -34,6 +34,7 @@ const Navbar = function(props) {
               <li><Link className={cl.links} to='/home'>Главное</Link></li>
               {/* <li><Link className={cl.links} onClick={() => router(`/my/${user_id}`) } >Мое</Link></li> */}
               <li className={cl.links} onClick={() => router(`/my/${user_id}`) }>Мое</li>
+              <li><Link className={cl.links} to='/find'>Найти опрос</Link></li>
               <li><Link className={cl.links} to='/login' >Выход</Link></li>
             </ul>
             :

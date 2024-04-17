@@ -5,6 +5,7 @@ import Login from "../Login/Login"
 import FormAns from "../Pages/FormAns"
 import { useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
+import FindPage from "../Pages/FindPage/FindPage"
 
 // const isLoggedIn = useSelector(
 //     (state) => !!state.auth.authData.accessToken
@@ -23,4 +24,5 @@ export const allRoutes = [
     {path: '/forms/:id', element: <FormPage/>, exact:true},
     {path: '/ans/:id', element: <FormAns/>, exact:true},
     {path: '/login', element: <Login/>, exact:true},
+    {path: '/find', element: <FindPage/>, exact:true},
 ]
