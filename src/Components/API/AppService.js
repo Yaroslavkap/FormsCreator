@@ -185,6 +185,25 @@ export default class AppService {
             throw error;
         }
     }
+
+    static async getStat(id) {
+        const accessToken = await store.dispatch(getAccessToken())
+        //console.log(accessToken)
+    
+        const config = {
+            headers: {
+                'authorization': `Bearer ${accessToken}`
+            }
+        };
+    
+        try {
+            const response = await axios.get(`http://127.0.0.1:8000/api/poll-statistic/${id}/`, config);
+            return response;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
  
 }
 

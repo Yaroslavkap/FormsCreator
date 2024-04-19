@@ -25,42 +25,7 @@ function FormPage() {
         fetchForm()
       }, [] )
       console.log(form)
-    // const [questions, setQuestions] = useState(
-    //     [{questionText: "questionText1",
-    //     questionType:"radio",
-    //     options: [
-    //         {optionText: "opt1"},
-    //         {optionText: "opt2"},
-    //         {optionText: "opt3"},
-             
-    //     ],
-    //     open: true,
-    //     required: false
-    //     },
-    //     {questionText: "questionText2",
-    //     questionType:"checkbox",
-    //     options: [
-    //         {optionText: "opt21"},
-    //         {optionText: "opt22"},
-    //         {optionText: "opt23"},
-         
-    //     ],
-    //     open: true,
-    //     required: false
-    //     },
-    //     {questionText: "questionText2",
-    //     questionType:"radio",
-    //     options: [
-    //         {optionText: "opt31"},
-    //         {optionText: "opt32"},
-    //         {optionText: "opt33"},
-         
-    //     ],
-    //     open: true,
-    //     required: false
-    //     }
-    // ]
-    // )
+    
 
     function ChangeTitle(text) {
         var newForm = {...form}

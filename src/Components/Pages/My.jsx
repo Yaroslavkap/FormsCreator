@@ -44,19 +44,19 @@ function My() {
   function addForm() {
     const newForms = [...forms]
     const newForm = {
-      "title": "Название опросаИЗМ",
+      "title": "Новый опрос",
       "description": "Описание опроса",
       "author": 1,
       "pages": [
           {
-              "title": "Заголовок страницы 1ИЗМ",
+              "title": "Заголовок страницы 1",
               "questions": [
                   {
-                      "title": "Вопрос 1 на странице 1ИЗМ",
+                      "title": "Вопрос 1 на странице 1",
                       "type": "checkbox",
                       "choices": [
                           {
-                              "name": "Вариант ответа 1ИЗМ"
+                              "name": "Вариант ответа 1"
                           },
                           {
                               "name": "Вариант ответа 2"
@@ -77,35 +77,35 @@ function My() {
                   }
               ]
           },
-          {
-              "title": "Заголовок страницы 2",
-              "questions": [
-                  {
-                      "title": "Вопрос 1 на странице 2",
-                      "type": "checkbox",
-                      "choices": [
-                          {
-                              "name": "Вариант ответа 1"
-                          },
-                          {
-                              "name": "Вариант ответа 2"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Вопрос 2 на странице 2",
-                      "type": "checkbox",
-                      "choices": [
-                          {
-                              "name": "Вариант ответа 1"
-                          },
-                          {
-                              "name": "Вариант ответа 2"
-                          }
-                      ]
-                  }
-              ]
-          }
+          // {
+          //     "title": "Заголовок страницы 2",
+          //     "questions": [
+          //         {
+          //             "title": "Вопрос 1 на странице 2",
+          //             "type": "checkbox",
+          //             "choices": [
+          //                 {
+          //                     "name": "Вариант ответа 1"
+          //                 },
+          //                 {
+          //                     "name": "Вариант ответа 2"
+          //                 }
+          //             ]
+          //         },
+          //         {
+          //             "title": "Вопрос 2 на странице 2",
+          //             "type": "checkbox",
+          //             "choices": [
+          //                 {
+          //                     "name": "Вариант ответа 1"
+          //                 },
+          //                 {
+          //                     "name": "Вариант ответа 2"
+          //                 }
+          //             ]
+          //         }
+          //     ]
+          // }
       ]
   }
   
@@ -147,6 +147,7 @@ function My() {
               <div className='my_content_element_buttons'>
                 <button className='my_content_element_del' onClick={() => delForm(form.id)}>Удалить</button>
                 <button style={{background:"rgb(115,47,249)"}} className='my_content_element_del' onClick={() => router(`/ans/${form.id}`) }>Перейти</button>
+                <button style={{background:"rgb(115,47,249)"}} className='my_content_element_del' onClick={() => router(`/stat/${form.id}`) }>Статистика</button>
               </div>
 
               
