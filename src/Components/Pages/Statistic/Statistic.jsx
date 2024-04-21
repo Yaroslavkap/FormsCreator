@@ -26,68 +26,68 @@ const Statistic = () => {
 
         form.forEach((question, index) => {
             const ctx = document.getElementById(`chart-${index}`).getContext('2d');
-
-            const chart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: question.choices.map(choice => choice.choice_title),
-                    datasets: [{
-                        data: question.choices.map(choice => choice.votes_count),
-                        backgroundColor: [
-                            'rgba(115,47,249, .8)',
-                            'rgba(255, 99, 132, 0.8)',
-                            'rgba(54, 162, 235, 0.8)',
-                            'rgba(255, 206, 86, 0.8)',
-                            'rgba(102,255,0, 0.8)',
-                            'rgba(98,65,32, 0.8)',
-
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                        ],
-                        borderWidth: 1,
-                    }],
-                },
-            });
-
-          //   const chart = new Chart(ctx, {
-          //     type: 'bar',
-          //     data: {
-          //         labels: question.choices.map(choice => choice.choice_title),
-                  
-          //         datasets: [{
-          //             data: question.choices.map(choice => choice.votes_count),
-          //             backgroundColor: [
-          //                 'rgba(115,47,249, .8)',
-          //                 'rgba(255, 99, 132, 0.8)',
-          //                 'rgba(54, 162, 235, 0.8)',
-          //                 'rgba(255, 206, 86, 0.8)',
-          //                 'rgba(102,255,0, 0.8)',
-          //                 'rgba(98,65,32, 0.8)',
-          //             ],
-          //             borderColor: [
-          //                 'rgba(255, 99, 132, 1)',
-          //                 'rgba(54, 162, 235, 1)',
-          //                 'rgba(255, 206, 86, 1)',
-          //             ],
-          //             borderWidth: 1,
-          //         }],
-          //     },
-          //     options: {
-          //         scales: {
-          //             y: {
-          //                 beginAtZero: true,
-          //             },
-          //         },
-          //     },
-          // });
-          
-           
-           
+            let chart;
+            if (question.question_type === 'radio') {
+                chart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: question.choices.map(choice => choice.choice_title),
+                        datasets: [{
+                            data: question.choices.map(choice => choice.votes_count),
+                            backgroundColor: [
+                                'rgba(115,47,249, .8)',
+                                'rgba(255, 99, 132, 0.8)',
+                                'rgba(54, 162, 235, 0.8)',
+                                'rgba(255, 206, 86, 0.8)',
+                                'rgba(102,255,0, 0.8)',
+                                'rgba(98,65,32, 0.8)',
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                            ],
+                            borderWidth: 1,
+                        }],
+                    },
+                });
+            } else {
+                chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: question.choices.map(choice => choice.choice_title),
+                        datasets: [{
+                            data: question.choices.map(choice => choice.votes_count),
+                            label: question.question_title,
+                            backgroundColor: [
+                                'rgba(115,47,249, .8)',
+                                'rgba(255, 99, 132, 0.8)',
+                                'rgba(54, 162, 235, 0.8)',
+                                'rgba(255, 206, 86, 0.8)',
+                                'rgba(102,255,0, 0.8)',
+                                'rgba(98,65,32, 0.8)',
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                            ],
+                            borderWidth: 1,
+                        }],
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                            },
+                        },
+                    },
+                });
+            }
+        
             chartRefs[index] = chart;
         });
+        
 
 
         return () => {
