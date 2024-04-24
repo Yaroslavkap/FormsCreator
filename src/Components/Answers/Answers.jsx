@@ -4,9 +4,12 @@ import { useFetching } from '../hooks/useFetching'
 import AppService from '../API/AppService'
 import { store } from '../store'
 import { getId } from '../store/auth/actionCreator'
+import {useNavigate} from 'react-router-dom'
 
 
 const Answers = ({id}) => {
+
+    const router = useNavigate()
     const [form, setForm] = useState([])
     const [answers, setAnswers] = useState([])
     const user_id = store.dispatch(getId())
@@ -59,12 +62,28 @@ const Answers = ({id}) => {
             setAnswers([])
             if(page < form.pages.length - 1 ) {
                 setPage(page + 1)
+            } else {
+                router(`/find/`)
             }
 
         } catch (error) {
             console.error(error);
         }
     }
+
+    // async function sendAndClose(ans, page) {
+    //     try {
+    //         const response = await AppService.AnsForm(ans, id);
+    //         console.log(response.data); 
+    //         setAnswers([])
+    //         if(page < form.pages.length - 1 ) {
+    //             setPage(page + 1)
+    //         }
+
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 
   return (
     // <div className='ans'>Answers {id}</div>
@@ -120,7 +139,13 @@ const Answers = ({id}) => {
                 </div>
 
                 <div className='ans_b_div'>
-                    <button type='button' className='ans_button' onClick={() => sendAns(answers, page)}>Далее</button>
+                    {form && form.pages && (page === form.pages.length - 1)
+                    ?
+                        <button type='button' className='ans_button' onClick={() => sendAns(answers, page)}>Завершить</button>
+                    :
+                        <button type='button' className='ans_button' onClick={() => sendAns(answers, page)}>Далее</button>
+                    }
+                     {/* <button type='button' className='ans_button' onClick={() => sendAns(answers, page)}>Далее</button> */}
                 </div>
                 
        

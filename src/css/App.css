@@ -212,12 +212,33 @@ body {
     font-size: 1.3rem;
     margin-bottom: 1rem;
     border-radius: 10px;
+
+    transition: background-color 0.5s ease;
 }
 
 .form_page_left_button:hover {
     transform: scale(1.05);
     transition-duration: 200ms;
 }
+
+.form_page_left_button.active {
+    animation: button-color-change 1s ease forwards;
+}
+
+@keyframes button-color-change {
+    0% {
+        background: rgba(115,47,249, .97);
+    }
+    50% {
+      background: #fff;
+      color: black;
+    }
+    100% {
+        background: rgba(115,47,249, .97);
+    }
+  }
+  
+  
 
 .form_page_main {
 background: rgb(240,235,248);
