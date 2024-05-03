@@ -204,6 +204,25 @@ export default class AppService {
             throw error;
         }
     }
+
+    static async addLogic(logic, id) {
+        const accessToken = await store.dispatch(getAccessToken());
+        //console.log(accessToken);
+    
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        };
+    
+        try {
+            const response = await axios.patch(`http://127.0.0.1:8000/api/add_logic/${id}/`, logic, config);
+            return response;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
  
 }
 

@@ -170,8 +170,12 @@ body {
     font-weight: bold;
 }
 
-.form_page {
+.form_page_all {
     padding-top: 15vh;
+}
+
+.form_page {
+    /* padding-top: 15vh; */
     display: flex;
     flex-direction: row;
     /* align-items: center; */

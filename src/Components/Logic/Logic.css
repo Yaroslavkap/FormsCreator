@@ -1,0 +1,155 @@
+.Logic {
+    background: rgb(240,235,248);
+    width: 85vw;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.Logic_made {
+    background: white;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.Pages_index {
+    display: flex;
+    flex-direction: row;
+}
+
+.Logic_made_true {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.Logic_main {
+    background: white;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+
+}
+
+.Logic_page {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    /* background: red; */
+    margin-top: 2rem;
+}
+
+.Logic_page h2 {
+    margin-bottom: .5rem;
+}
+
+.Logic_question_and {
+    width: 100%;   
+}
+
+.Logic_question {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    border: 1px solid grey;
+    padding: .5rem;
+}
+
+.add_log_btn {
+    padding: .2rem .2rem;
+    background-color: rgba(115,47,249, .97);
+    color: white;
+    border-radius: 7px;
+    font-size: 1rem;
+}
+
+.add_log_btn:hover {
+    transform: scale(1.05);
+    transition-duration: 200ms;
+}
+
+.Logic_more {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: height 0.5s ease, opacity 3s ease;
+}
+  
+.Logic_more.open {
+    height: auto;
+    opacity: 1;
+    /* background: red; */
+    transition: height 0.5s ease, opacity 3s ease;
+}
+
+.Logic_more_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.Add_logic {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-bottom: .2rem;
+    padding: .4rem;
+}
+
+.logic_if {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 40%;
+    justify-content: flex-start;
+}
+
+.logic_then {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 40%;
+}
+
+.logic_then_el {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* justify-content: flex-start; */
+}
+
+.end_logic_btn {
+    padding: .5rem .5rem;
+    background-color: rgba(115,47,249, .97);
+    color: white;
+    border-radius: 7px;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.end_logic_btn:hover {
+    transform: scale(1.05);
+    transition-duration: 200ms;
+}
+  
+  
