@@ -57,6 +57,14 @@ const Answers = ({id}) => {
         }
         return newPage;
       }
+
+      function decreasePage(page, mustSkip) {
+        let newPage = page - 1
+        while (mustSkip.some(arr => arr.includes(newPage))) {
+            newPage--;
+        }
+        return newPage;
+      }
     
     
 
@@ -64,8 +72,8 @@ const Answers = ({id}) => {
         let indexes = [];
         skipPairs = getSkipPairs(skipPairs)
 
-        console.log(skipPairs)
-        console.log(realPairs)
+        // console.log(skipPairs)
+        // console.log(realPairs)
         
         realPairs.forEach((pair) => {
             let index = skipPairs.findIndex((skipPair) => skipPair[0] === pair[0] && skipPair[1] === pair[1]);
@@ -147,6 +155,21 @@ const Answers = ({id}) => {
         }
     }
 
+    function goBack(page) {
+        setAnswers([])
+        let newAll = [...allAns]
+        console.log(newAll)
+        newAll.pop()
+        console.log(newAll)
+        setAllAns(newAll)
+
+        let newMustSkip = [...mustSkip]
+        setPage(decreasePage(page, newMustSkip))
+        newMustSkip.pop()
+        setMustSkip(newMustSkip)
+
+    }
+
     
 
     
@@ -202,7 +225,7 @@ const Answers = ({id}) => {
                 <div className='ans_b_div'>
                     {form && form.pages && (page !== 0)
                     ?
-                        <button type='button' className='ans_button' >Назад</button>
+                        <button type='button' className='ans_button' onClick={() => goBack(page)}>Назад</button>
                     :
                         <div></div>
                     }
