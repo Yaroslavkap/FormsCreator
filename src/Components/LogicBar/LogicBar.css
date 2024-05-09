@@ -15,6 +15,7 @@
     justify-content: center;
     flex: 3;
     border-bottom: 3px solid grey;
+    /* border-bottom: 2px solid rgba(115,47,249, .97); */
     margin-bottom: 5rem;
 
 }
@@ -28,4 +29,17 @@
     text-decoration: none;
     cursor: pointer;
 
+}
+
+.links.active {
+    /* background: rgba(115,47,249, .97);
+    color: white;
+    border-radius: 5px; */
+    border: 2px solid grey; 
+    color: rgba(115,47,249, .97);
+    /* border: 2px solid rgba(115,47,249, .97); */
+    border-bottom: none;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }

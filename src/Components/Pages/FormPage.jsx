@@ -219,7 +219,7 @@ function FormPage() {
             </div>
             :
             <div className='form_page_all'>
-                <LogicBar onLogicOnChange={handleLogicOnChange}  />
+                <LogicBar onLogicOnChange={handleLogicOnChange} logicTrue={logicOn}  />
                 {logicOn
                 ?
                     <Logic myForm = {form}/>

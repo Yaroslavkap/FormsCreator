@@ -68,56 +68,6 @@ const Logic = ({myForm}) => {
         console.log(checked)
       }
 
-    
-
-    //   async function saveForm() {
-    //     try {
-    //         const response = await AppService.UpdateForm(form, form.id);
-    //         console.log(response.data); 
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-
-    //   function saveLogic() {
-    //     let newForm = {...form}
-    //     newForm.question_answer_pairs = JSON.stringify(pairs)
-    //     newForm.hidden_pages = JSON.stringify(skip)
-
-    //     setForm(newForm)
-    //     saveForm()
-
-    //   }
-
-    // async function saveLogic(pageIndex, questionIndex) {
-    //     try {
-    //         let newForm = {...form}
-    //         let newPairs = pairs.filter(subArr => subArr.length > 0)
-    //         let newSkip = skip.filter(subArr => subArr.length > 0)
-    //         let allPairs = []
-    //         let allSkip = []
-
-    //         if(newForm.question_answer_pairs) {
-    //             allPairs = JSON.parse(newForm.question_answer_pairs)
-    //             allSkip = JSON.parse(newForm.hidden_pages)
-    //         } 
-            
-    //         allPairs = allPairs.concat(newPairs)
-    //         allSkip = allSkip.concat(newSkip)
-
-    //         newForm.question_answer_pairs = JSON.stringify(allPairs)
-    //         newForm.hidden_pages = JSON.stringify(allSkip)
-    //         // newForm.question_answer_pairs = JSON.stringify(pairs)
-    //         // newForm.hidden_pages = JSON.stringify(skip)
-            
-    //         const response = await AppService.UpdateForm(newForm, newForm.id);
-    //         setForm(newForm)
-    //         console.log(response.data); 
-    //         toggleMore(pageIndex, questionIndex)
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
 
     async function saveLogic(pageIndex, questionIndex) {
         try {
@@ -221,26 +171,29 @@ const Logic = ({myForm}) => {
   return (
     <div className='Logic'>
         <div className='Logic_made'>
-            <h2>Созданная логика:</h2>
+            <h2 className='logic_h2'>Созданная логика</h2>
             {form && form.question_answer_pairs && form.hidden_pages && form.question_answer_pairs !== "" && form.hidden_pages !== ""
             ?
                 <div className='Logic_made_true'>
-                    <div className='Logic_made_left'>
+                    <div className='Logic_made_left Logic_made_LR'>
+                    <h3 className='logic_h2'>Если (выбраны):</h3>
                         {JSON.parse(form.question_answer_pairs).map((pair, pairIndex) => (
-                            <div key = {pairIndex}>
-                                <button type='button' onClick={() => delLogic(pairIndex)}>Удалить</button>
+                            <div className='Pages_index Pages_index_l' key = {pairIndex}>
+                                {/* <button type='button' onClick={() => delLogic(pairIndex)}>Удалить</button> */}
                                 {pair[0].name}({pair[1].name})
                             </div>
                         ))}
                     </div>
 
-                    <div className='Logic_made_right'>
+                    <div className='Logic_made_right Logic_made_LR'>
+                    <h3 className='logic_h2'>То (пропустить страницы):</h3>
                         {JSON.parse(form.hidden_pages).map((hidden, hiddenIndex) => (
                             // <div key={hiddenIndex}>{hidden.join(", ")}</div>
-                            <div className='Pages_index' key={hiddenIndex}>
+                            <div className='Pages_index Pages_index_r' key={hiddenIndex}>
                                 {hidden.map((hPage, hPageIndex) => (
-                                 <div key ={hPageIndex}>{hPage.name}</div>
+                                 <div className='Hidden_pages' key ={hPageIndex}>{`${hPage.name}`}</div>
                                 ))}
+                                <button style={{fontSize: "1rem", padding: ".1rem", background: "red"}} className='add_log_btn' type='button' onClick={() => delLogic(hiddenIndex)}>Удалить</button>
                             </div>
 
                             
@@ -257,16 +210,26 @@ const Logic = ({myForm}) => {
             {form && form.pages ? (
                 form.pages.map((page, pageIndex) => (
                 <div className='Logic_page' key={pageIndex}>
-                    <h2>Страница {pageIndex + 1}</h2>
+                    <h2 className='logic_h2'>Страница {pageIndex + 1}</h2>
                     {page.questions.map((question, questionIndex) => {
                     if (question.type === 'radio' || question.type === 'checkbox') {
                         return (
                         <div className='Logic_question_and' key={questionIndex}>
-                            <div className='Logic_question'>
-                            <font>{question.title}</font>
-                            <button className='add_log_btn' type='button' onClick={() => toggleMore(pageIndex, questionIndex)}>
-                                Добавить логику
-                            </button>
+                            <div className={`Logic_question ${pageIndex === openedMoreIndex.page && questionIndex === openedMoreIndex.question ? 'active' : ''}`}>
+                                <font>{question.title}</font>
+                                {/* <button className='add_log_btn' type='button' onClick={() => toggleMore(pageIndex, questionIndex)}>
+                                    Добавить логику
+                                </button> */}
+                                {pageIndex === openedMoreIndex.page && questionIndex === openedMoreIndex.question 
+                                ?
+                                    <button className='add_log_btn' type='button' onClick={() => toggleMore(pageIndex, questionIndex)}>
+                                        Закрыть
+                                    </button>
+                                :
+                                    <button className='add_log_btn' type='button' onClick={() => toggleMore(pageIndex, questionIndex)}>
+                                        Добавить логику
+                                    </button>
+                                }
                             </div>
                             {pageIndex === openedMoreIndex.page && questionIndex === openedMoreIndex.question && (
                             // <div className='Logic_more'>more</div>
