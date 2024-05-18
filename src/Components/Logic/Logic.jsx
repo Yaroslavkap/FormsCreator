@@ -254,7 +254,8 @@ const Logic = ({myForm}) => {
                                                 if (page2.id !== page.id) {
                                                     return (
                                                     <div className='logic_then_el'>
-                                                        <input type='checkbox' name={choiceIndex} onClick={(e) =>{makeSkip(page2.id, e.target.checked, choiceIndex, (page2Index + 1))}}/>
+                                                        <input type='checkbox'
+                                                        name={choiceIndex} onClick={(e) =>{makeSkip(page2.id, e.target.checked, choiceIndex, (page2Index + 1))}}/>
                                                         <span>{page2Index + 1}</span>
                                                     </div>
                                                     )

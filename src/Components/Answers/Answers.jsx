@@ -120,28 +120,27 @@ const Answers = ({id}) => {
         try {
             let newAll = [...allAns]
             let newMustSkip = [...mustSkip]
-            // const response = await AppService.AnsForm(ans, id);
-            // console.log(response.data); 
-            //setAnswers([])
             newAll.push([...ans])
             setAllAns([...newAll])
             console.log(newAll)
-            //
-            //console.log(skipDetector(pairs, getQuestionChoicePairs(ans), skip))
+
+            let skip = []
+            let pairs = []
+            if (form.hidden_pages && form.question_answer_pairs) {
+                skip = JSON.parse(form.hidden_pages)
+                pairs = JSON.parse(form.question_answer_pairs)
+            }
             
-            const skip = JSON.parse(form.hidden_pages)
-            const pairs = JSON.parse(form.question_answer_pairs)
+            // const skip = JSON.parse(form.hidden_pages)
+            // const pairs = JSON.parse(form.question_answer_pairs)
             console.log(getSkipPairs(pairs))
 
             newMustSkip.push(skipDetector(pairs, getQuestionChoicePairs(ans), skip))
             console.log(newMustSkip)
             setMustSkip(newMustSkip)
             
-            //if(page < form.pages.length - 1 ) {
             if (increasePage(page, newMustSkip) < form.pages.length) {
-                //setPage(page + 1)
                 setPage(increasePage(page, newMustSkip))
-                
                 setAnswers([])
             } else {
                 const send = newAll.flat()

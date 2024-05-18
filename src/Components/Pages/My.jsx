@@ -139,14 +139,32 @@ function My() {
           {forms.map((form, i) =>
             <div className='my_content_element'>
               {/* <h className='element_h'><Link className='element_h' to="/form" >{form.title}</Link></h> */}
-              <div>
+
+              {form.is_submit
+                ?
+                <div>
+                  <p className='element_h'>{form.title}</p>
+                  <p className='smart_hide'>{form.description}</p>
+                  <p>Код опроса: {form.id}</p>
+                  <p>Статус: <font style={{color:"green"}}>опубликован</font></p>
+                </div>
+                :
+                <div>
+                  <p className='element_h' onClick={() => router(`/forms/${form.id}`) }>{form.title}</p>
+                  <p className='smart_hide'>{form.description}</p>
+                  <p>Код опроса: {form.id}</p>
+                  <p>Статус: <font style={{color:"red"}}>не опубликован</font></p>
+                </div>
+              }
+              {/* <div>
                 <p className='element_h' onClick={() => router(`/forms/${form.id}`) }>{form.title}</p>
-                <p>{form.description}</p>
-              </div>
+                <p className='smart_hide'>{form.description}</p>
+                <p>Код опроса: {form.id}</p>
+              </div> */}
 
               <div className='my_content_element_buttons'>
                 <button className='my_content_element_del' onClick={() => delForm(form.id)}>Удалить</button>
-                <button style={{background:"rgb(115,47,249)"}} className='my_content_element_del' onClick={() => router(`/ans/${form.id}`) }>Перейти</button>
+                <button style={{background:"rgb(115,47,249)"}} className='my_content_element_del' onClick={() => router(`/ans/${form.id}`) }>Просмотр</button>
                 <button style={{background:"rgb(115,47,249)"}} className='my_content_element_del' onClick={() => router(`/stat/${form.id}`) }>Статистика</button>
               </div>
 

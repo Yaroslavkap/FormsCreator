@@ -187,7 +187,8 @@ body {
 
 .form_page_left {
     width: 25vw;
-    height: 90vh;
+    /* height: 90vh; */
+    
     background: rgb(240,235,248);
     margin-right: 5vw;
     display: flex;
@@ -208,6 +209,12 @@ body {
 .form_page_left_label {
     font-size: 1.75rem;
     padding-bottom: 2rem;
+}
+
+.form_page_warning {
+    font-size: 1rem;
+    padding-left: 1rem;
+    /* background: white; */
 }
 
 .form_page_left_button {
@@ -654,6 +661,10 @@ body {
         width: 75vw;
     }
 
+    .my_content_element {
+        width: 90%;
+    }
+
     .my_content_button {
 
     }
@@ -661,6 +672,10 @@ body {
     .my_content_main_form {
         
         width: 75vw;
+    }
+
+    .smart_hide {
+        display: none;
     }
 
 }

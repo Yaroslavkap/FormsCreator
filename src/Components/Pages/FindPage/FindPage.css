@@ -46,3 +46,26 @@
     transform: scale(1.05);
     transition-duration: 200ms;
 }
+
+.find_error {
+    color: red;
+    margin-top: .5rem;
+}
+
+
+
+
+
+
+
+
+
+@media(max-width: 700px) {
+    .find {
+        display: flex;
+        justify-content: center;
+    }
+    .find_form {
+        width: 85%;
+    }
+}

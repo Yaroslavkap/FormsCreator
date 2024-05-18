@@ -6,6 +6,7 @@ import { IconContext } from "react-icons";
 // import AppService from '../API/AppService';
 // import { useFetching } from '../hooks/useFetching';
 import AppService from '../API/AppService';
+import {useNavigate} from 'react-router-dom'
 
 // import {useParams} from 'react-router-dom'
 
@@ -17,6 +18,7 @@ function Form({myForm}) {
     const [page, setPage] = useState(0)
 
     const [isBtnActive, setIsBtnActive] = useState(false);
+    const router = useNavigate()
 
 
     // const [fetchForm, isFormLoading, formError] = useFetching(async () => {
@@ -26,11 +28,20 @@ function Form({myForm}) {
     //   })
       
     
-      useEffect( () => {
-        setForm(myForm)
-      }, [] )
-       console.log(form)
+    useEffect( () => {
+    setForm(myForm)
+    }, [] )
+    console.log(form)
+
+    useEffect(() => {
+        if (form.is_submit) {
+          console.log(form);
+          saveForm();
+          router(`/find/`);
+        }
+      }, [form]);
     
+
 
     function ChangeTitle(text) {
         var newForm = {...form}
@@ -180,6 +191,8 @@ function Form({myForm}) {
         console.log(form)
     }
 
+    
+
     async function saveForm() {
         try {
             const response = await AppService.UpdateForm(form, form.id);
@@ -195,6 +208,12 @@ function Form({myForm}) {
         }
     }
 
+    function Public() {
+        let newForm = {...form}
+        newForm.is_submit = true
+        setForm(newForm)
+        
+    }
     
 
   return (
@@ -223,6 +242,12 @@ function Form({myForm}) {
             <p style={{marginTop:"5rem"}} className='form_page_left_label' >Шаблоны</p>
             <button type='button' className='form_page_left_button' onClick={() => Yes_No(page)}>Да/Нет</button>
             <button type='button' className='form_page_left_button' onClick={() => Raiting(page)}>Рейтинг(1-5)</button>
+
+            <p style={{marginTop:"5rem"}} className='form_page_left_label' >Публикация</p>
+            <button type='button' className='form_page_left_button' onClick={() => Public()}>Опубликовать</button>
+            <p className='form_page_warning' >Внимание: после публикации редактирование опроса будет невозможным!!!</p>
+            
+
         </div>
         <div className='form_page_main'>
 
