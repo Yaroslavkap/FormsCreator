@@ -104,6 +104,13 @@ function Form({myForm}) {
         console.log(form)
     }
 
+    function removePage(page) {
+        let newForm = {...form}
+        newForm.pages.splice(page, 1)
+        setForm(newForm)
+        console.log(form)
+    }
+
     function addQuestion(type, page) {
         var newForm = {...form}
         newForm.pages[page].questions.push({
@@ -261,8 +268,9 @@ function Form({myForm}) {
             <div className='form_editor'>
                 {form && form.pages && form.pages[page] && form.pages[page].questions ? (
                 <div>
-                    <div className='form_editor_element'>
+                    <div className='form_editor_page'>
                         <p>Страница {page + 1}</p>
+                        <button className='my_content_element_del' style={{marginTop:"0"}} onClick={() => removePage(page)}>Удалить</button>
                     </div>
                     {form.pages[page].questions.map((question, index) => (
                     <div className="form_editor_element">

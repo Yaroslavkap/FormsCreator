@@ -7,6 +7,7 @@ import { useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
 import FindPage from "../Pages/FindPage/FindPage"
 import Statistic from "../Pages/Statistic/Statistic"
+import Registration from "../Login/Registration"
 
 // const isLoggedIn = useSelector(
 //     (state) => !!state.auth.authData.accessToken
@@ -36,11 +37,13 @@ export const allRoutes = {
       {path: '/forms/:id', element: <FormPage/>, exact:true},
       {path: '/ans/:id', element: <FormAns/>, exact:true},
       {path: '/login', element: <Login/>, exact:true},
+      // {path: '/registration', element: <Registration/>, exact:true},
       {path: '/find', element: <FindPage/>, exact:true},
       {path: '/stat/:id', element: <Statistic/>, exact:true},
     ],
     publicRoutes: [
       {path: '/login', element: <Login/>, exact:true},
       {path: '/home', element: <Home/>, exact:true},
+      {path: '/registration', element: <Registration/>, exact:true},
     ],
   };

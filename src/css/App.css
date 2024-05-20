@@ -319,6 +319,20 @@ body {
     border-left: 5px solid white;
 }
 
+.form_editor_page {
+    background: white;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* justify-content: center; */
+    width: 50vw;
+    margin: 2rem;
+    border-radius: 7px;
+    border-left: 5px solid white;
+}
+
 .form_editor_element:hover {
     border-left: 5px solid rgb(115,47,249);
     border-bottom-left-radius: 4px;
@@ -520,6 +534,7 @@ body {
 .element_h {
     font-size: 1.5rem;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .element_h:hover {

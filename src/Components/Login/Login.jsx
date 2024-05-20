@@ -6,6 +6,7 @@ import { useDispatch,  useSelector} from 'react-redux'
 import { getRefToken, getAccessToken, getId } from '../store/auth/actionCreator';
 import { store } from '../store';
 import AppService from '../API/AppService';
+import {Link} from 'react-router-dom'
 
 const Login = () => {
 
@@ -66,9 +67,13 @@ const Login = () => {
                 <input name='login' type='text' placeholder='введите логин' value={login} onChange={e => setLogin(e.target.value)}/>
             </div>
 
-            <div>
+            <div >
                 <label htmlFor='password'>Пароль:</label>
                 <input name='password' type='password' placeholder='введите пароль' value={password} onChange={e => setPassword(e.target.value)}/>
+            </div>
+
+            <div className='log_link'>
+                <Link to='/registration' >Регистрация</Link>
             </div>
 
             <button className='log_button'>Войти</button>

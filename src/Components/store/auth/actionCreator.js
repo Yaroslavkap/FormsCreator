@@ -81,31 +81,17 @@ export const loginUser =
         }
     }
 
-    // export const getMyId =
-    // () =>
-    // (dispatch) => {
-    //     try {
-    //         const accessToken = store.getState().auth.authData.user_id
-
-
-    //         return accessToken
-    //     } catch (e) {
-    //         console.error(e)
-
-    //         return null
-    //     }
-    // }
-
-    // export const getForms =
-    //   () =>
-    //   async (dispatch) => {
-    //       try {
-    //         await api.auth.logMyPage()
-
-    //         //dispatch(logoutSuccess())
-
-    //         //history.push('/')
-    //       } catch (e) {
-    //           console.error(e)
-    //       }
-    //   }
+    export const getProfile = () =>
+      async (dispatch) => {
+        try {
+          dispatch(loadProfileStart())
+    
+          const res = await api.auth.getProfile()
+    
+          dispatch(loadProfileSucess(res.data))
+        } catch (e) {
+          console.error(e)
+    
+          dispatch(loadProfileFailure(e.message))
+        }
+      }

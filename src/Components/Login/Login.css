@@ -44,8 +44,8 @@
 }
 
 .log_button {
-    width: 30%;
-    padding:  .6rem 0;
+    /* width: 30%; */
+    padding:  .6rem 1rem;
     background: rgba(115,47,249, .97);
     color: white;
     border-radius: 5px;
@@ -56,6 +56,14 @@
 .log_button:hover {
     transform: scale(1.05);
     transition-duration: 200ms;
+}
+
+.log_link {
+    display: flex;
+    justify-content: flex-end;
+    width: 70%;
+    margin-top: 1rem;
+    font-size: 1.1rem;
 }
 
 

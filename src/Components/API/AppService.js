@@ -3,7 +3,10 @@ import { getAccessToken, getRefToken } from '../store/auth/actionCreator';
 import { logoutSuccess } from '../store/auth/authReducer';
 import { store } from '../store';
 
+const source = "http://127.0.0.1:8000/"
+
 export default class AppService {
+
     
     // static async fetchMyForms() {
     //     try {
@@ -35,7 +38,7 @@ export default class AppService {
         };
     
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/show_votings/${id}/`, config);
+            const response = await axios.get(`${source}show_votings/${id}/`, config);
             return response;
         } catch (error) {
             console.error(error);
@@ -61,7 +64,7 @@ export default class AppService {
         };
     
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/update/voting/${id}/`, config);
+            const response = await axios.get(`${source}/update/voting/${id}/`, config);
             return response;
         } catch (error) {
             console.error(error);
@@ -80,7 +83,7 @@ export default class AppService {
         };
     
         try {
-            const response = await axios.post("http://127.0.0.1:8000/create/voting/", forms, config);
+            const response = await axios.post(`${source}create/voting/`, forms, config);
             return response;
         } catch (error) {
             console.error(error);
@@ -99,7 +102,7 @@ export default class AppService {
         };
     
         try {
-            const response = await axios.put(`http://127.0.0.1:8000/update/voting/${id}/`, form, config);
+            const response = await axios.put(`${source}update/voting/${id}/`, form, config);
             return response;
         } catch (error) {
             console.error(error);
@@ -118,7 +121,7 @@ export default class AppService {
         };
     
         try {
-            const response = await axios.delete(`http://127.0.0.1:8000/delete/voting/${id}/`, config);
+            const response = await axios.delete(`${source}delete/voting/${id}/`, config);
             return response;
         } catch (error) {
             console.error(error);
@@ -139,7 +142,7 @@ export default class AppService {
         };
     
         try {
-            const response = await axios.post(`http://127.0.0.1:8000/api/logout/`, refObj, config);
+            const response = await axios.post(`${source}api/logout/`, refObj, config);
             store.dispatch(logoutSuccess())
             return response;
         } catch (error) {
@@ -159,7 +162,7 @@ export default class AppService {
         };
     
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/response-voting/${id}/`, config);
+            const response = await axios.get(`${source}api/response-voting/${id}/`, config);
             return response;
         } catch (error) {
             console.error(error);
@@ -178,7 +181,7 @@ export default class AppService {
         };
     
         try {
-            const response = await axios.post(`http://127.0.0.1:8000/api/answer-voting/${id}/`, answer, config);
+            const response = await axios.post(`${source}api/answer-voting/${id}/`, answer, config);
             return response;
         } catch (error) {
             console.error(error);
@@ -197,7 +200,7 @@ export default class AppService {
         };
     
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/poll-statistic/${id}/`, config);
+            const response = await axios.get(`${source}api/poll-statistic/${id}/`, config);
             return response;
         } catch (error) {
             console.error(error);
@@ -216,13 +219,52 @@ export default class AppService {
         };
     
         try {
-            const response = await axios.patch(`http://127.0.0.1:8000/api/add_logic/${id}/`, logic, config);
+            const response = await axios.patch(`${source}api/add_logic/${id}/`, logic, config);
             return response;
         } catch (error) {
             console.error(error);
             throw error;
         }
     }
+
+    static async register(post) {
+        // const accessToken = await store.dispatch(getAccessToken())
+        // //console.log(accessToken)
+    
+        // const config = {
+        //     headers: {
+        //         'authorization': `Bearer ${accessToken}`
+        //     }
+        // };
+    
+        try {
+            const response = await axios.post(`${source}api/register/`, post);
+            return response;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+
+    static async checkToken() {
+        const accessToken = await store.dispatch(getAccessToken())
+        //console.log(accessToken)
+    
+        const config = {
+            headers: {
+                'authorization': `Bearer ${accessToken}`
+            }
+        };
+    
+        try {
+            const response = await axios.get(`${source}api/token/validate/`, config);
+            return response;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+
  
 }
 
