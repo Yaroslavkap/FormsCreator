@@ -33,13 +33,13 @@ function Form({myForm}) {
     }, [] )
     console.log(form)
 
-    useEffect(() => {
-        if (form.is_submit) {
-          console.log(form);
-          saveForm();
-          router(`/find/`);
-        }
-      }, [form]);
+    // useEffect(() => {
+    //     if (form.is_submit) {
+    //       console.log(form);
+    //       //saveForm();
+    //       router(`/find/`);
+    //     }
+    //   }, [form]);
     
 
 
@@ -215,12 +215,21 @@ function Form({myForm}) {
         }
     }
 
-    function Public() {
-        let newForm = {...form}
-        newForm.is_submit = true
-        setForm(newForm)
-        
+    async function Public() {
+        try {
+            const submit = {"is_submit": true}
+            const response = await AppService.makePublic(submit, form.id);
+            console.log(response.data); 
+
+            router(`/find/`);
+
+        } catch (error) {
+            console.error(error);
+        }
     }
+
+
+   
     
 
   return (

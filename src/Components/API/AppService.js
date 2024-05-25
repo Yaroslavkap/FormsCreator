@@ -265,6 +265,25 @@ export default class AppService {
         }
     }
 
+    static async makePublic(sub, id) {
+        const accessToken = await store.dispatch(getAccessToken());
+        //console.log(accessToken);
+    
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        };
+    
+        try {
+            const response = await axios.patch(`${source}api/submit/${id}/`, sub, config);
+            return response;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+
  
 }
 

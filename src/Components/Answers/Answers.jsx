@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import "./Answers.css"
 import { useFetching } from '../hooks/useFetching'
 import AppService from '../API/AppService'
@@ -19,6 +19,8 @@ const Answers = ({id}) => {
     const [page, setPage] = useState(0)
 
     const [mustSkip, setMustSkip] = useState([])
+
+    const formRef = useRef(null); 
 
     //
     // const skip = [[{'id':2, 'name': 2}], [{'id':3, 'name': 3}]]
@@ -149,6 +151,10 @@ const Answers = ({id}) => {
                 router(`/find/`)
             }
 
+            if (formRef.current) {
+                formRef.current.reset(); // Вызов метода reset() для элемента form
+            }
+
         } catch (error) {
             console.error(error);
         }
@@ -167,6 +173,18 @@ const Answers = ({id}) => {
         newMustSkip.pop()
         setMustSkip(newMustSkip)
 
+        if (formRef.current) {
+            formRef.current.reset(); // Вызов метода reset() для элемента form
+        }
+
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        // if (formRef.current) {
+        //     formRef.current.reset(); // Вызов метода reset() для элемента form
+        // }
+        
     }
 
     
@@ -182,7 +200,7 @@ const Answers = ({id}) => {
             </div>
             :
             <div className='a_form_page'>
-                <div className='form_page_main'>
+                <form onSubmit={handleSubmit} ref={formRef} className='form_page_main'>
 
                     <div className='a_form_page_main_top'>
                         {/* <input className='form_editor_element_label' type='text' value={form.title}/>
@@ -195,33 +213,49 @@ const Answers = ({id}) => {
                     
                     <div className='form_editor'>
                     {/* {form && form.questions ? ( */}
-                    {form && form.pages && form.pages[page] && form.pages[page].questions ? (
-                                form.pages[page].questions.map((question, index) => (
-                                    <div className='form_editor_element'>
-                                    
-                                        {/* <input className='form_editor_element_label' type='text' value={question.title} /> */}
-                                        <p className='a_form_editor_element_label'>{question.title}</p>
+                        {form && form.pages && form.pages[page] && form.pages[page].questions ? (
+                                    form.pages[page].questions.map((question, index) => (
+                                        <div className='form_editor_element'>
                                         
-                                        {question.choices.map((opt, j) =>
-                                        <div className='a_option'>
-                                            {/* <input type={question.type} name={index} />
-                                            <input className='form_editor_element_option' type='text' value={opt.name} /> */}
-                                            <input type={question.type} name={index} onClick={(e) =>{ChangeAns(question.id, opt.id, e.target.checked)}}/>
-                                            <span className='a_form_editor_element_option'>{opt.name}</span>
-                                        </div>
-                                        )}
-                                        
-                            </div>
-                                ))
-                            ) : (
-                                <div>No questions available</div>
-                    )}
-                    
+                                            {/* <input className='form_editor_element_label' type='text' value={question.title} /> */}
+                                            <p className='a_form_editor_element_label'>{question.title}</p>
+                                            
+                                            {question.choices.map((opt, j) =>
+                                            <div className='a_option'>
+                                                {/* <input type={question.type} name={index} />
+                                                <input className='form_editor_element_option' type='text' value={opt.name} /> */}
+                                                <input type={question.type} name={index} onClick={(e) =>{ChangeAns(question.id, opt.id, e.target.checked)}}/>
+                                                <span className='a_form_editor_element_option'>{opt.name}</span>
+                                            </div>
+                                            )}
+                                            
+                                </div>
+                                    ))
+                                ) : (
+                                    <div>No questions available</div>
+                        )}
+
+                        <div   div className='ans_b_div'>
+                            {form && form.pages && (page !== 0)
+                            ?
+                                <button type='button' className='ans_button' onClick={() => goBack(page)}>Назад</button>
+                            :
+                                <div></div>
+                            }
+
+                            {(form && form.pages && (increasePage(page, mustSkip) >= form.pages.length) )
+                            ?
+                                <button type='button' className='ans_button' onClick={() => sendAns(answers, page)}>Завершить</button>
+                            :
+                                <button className='ans_button' onClick={() => sendAns(answers, page)}>Далее</button>
+                            }
+                        </div>
+                        
                     </div>
                     
-                </div>
+                </form>
 
-                <div className='ans_b_div'>
+                {/* <div className='ans_b_div'>
                     {form && form.pages && (page !== 0)
                     ?
                         <button type='button' className='ans_button' onClick={() => goBack(page)}>Назад</button>
@@ -229,14 +263,13 @@ const Answers = ({id}) => {
                         <div></div>
                     }
 
-                    {/* {form && form.pages && (page === form.pages.length - 1) */}
                     {(form && form.pages && (increasePage(page, mustSkip) >= form.pages.length) )
                     ?
                         <button type='button' className='ans_button' onClick={() => sendAns(answers, page)}>Завершить</button>
                     :
                         <button type='button' className='ans_button' onClick={() => sendAns(answers, page)}>Далее</button>
                     }
-                </div>
+                </div> */}
                 
        
         </div>
