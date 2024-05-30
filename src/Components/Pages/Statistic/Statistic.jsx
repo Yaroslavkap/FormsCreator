@@ -6,6 +6,12 @@ import { useFetching } from '../../hooks/useFetching';
 // import { Pie } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 
+import { saveAs } from 'file-saver';
+//import XLSX from 'xlsx';
+import * as XLSX from 'xlsx/xlsx.mjs';
+
+
+
 
 const Statistic = () => {
     const params = useParams();
@@ -95,11 +101,92 @@ const Statistic = () => {
         };
     }, [form]);
 
+    // async function Export(id) {
+    //     try {
+            
+    //         const response = await AppService.exportStatistic(id);
+    //         console.log(response.data); 
+
+
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
+
+    function flattenQuestionChoices(questions) {
+        const flattenedQuestions = [];
+      
+        for (const question of questions) {
+          for (const choice of question.choices) {
+            flattenedQuestions.push({
+              question_id: question.question_id,
+              question_title: question.question_title,
+            //   question_type: question.question_type,
+              choice_id: choice.choice_id,
+              choice_title: choice.choice_title,
+              votes_count: choice.votes_count,
+            });
+          }
+        }
+      
+        return flattenedQuestions;
+      }
+      
+
+    function Export() {
+
+        let newForm = flattenQuestionChoices(form)
+        console.log(newForm)
+        let wb = XLSX.utils.book_new(),
+        ws = XLSX.utils.json_to_sheet(newForm)
+
+        XLSX.utils.book_append_sheet(wb, ws, "Statistic111")
+
+        XLSX.writeFile(wb, "MyStat.xlsx")
+
+    }
+
+    // async function Export(id) {
+    //     try {
+    //         const response = await AppService.exportStatistic(id);
+    //         console.log(response.data)
+    //         const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    //         saveAs(blob, 'statistics.xlsx');
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
+
+    // async function Export(id) {
+    //     try {
+    //       const response = await AppService.exportStatistic(id);
+    //       console.log(response.headers);
+    //       console.log(response.data);
+      
+    //       // Сохранение файла на диск для проверки
+    //       const blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    //       const url = window.URL.createObjectURL(blob);
+    //       const link = document.createElement('a');
+    //       link.href = url;
+    //       link.setAttribute('download', 'statistics.xlsx');
+    //       document.body.appendChild(link);
+    //       link.click();
+    //       link.parentNode.removeChild(link);
+    //     } catch (error) {
+    //       console.error(error);
+    //     }
+    //   }
+
     return (
         <div className='stat'>
             <div className='top'>
                 <h1>Статистика опроса {id}</h1>
+                <button type='button' onClick={() => Export(id)}>Экспорт</button>
             </div>
+
+            {/* <div className='top'>
+                <button>Экспорт</button>
+            </div> */}
 
             <div className='ques_stat'>
                 {form && form.map((question, index) => (

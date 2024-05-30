@@ -47,6 +47,7 @@
     border: 1px solid grey;
     width: 100%;
     height: 2.5rem;
+    
     /* border-radius: 5px; */
     
 
@@ -223,5 +224,35 @@
 .Hidden_pages {
  margin-right: 1rem;
 }
-  
+
+
+
+@media(max-width: 700px) {
+    .smart_hide {
+        display: none;
+    }
+
+    .Logic { 
+        width: 100%;
+    }
+
+    .Logic_made {
+        width: 95%;
+    }
+
+    .Logic_main {
+        width: 95%;
+    }
+
+    .Pages_index {
+        height: 7rem;
+    }
+
+    .add_log_btn {
+        width: 10vh;
+        height: 5vh;
+    }
+
+    
+}
   

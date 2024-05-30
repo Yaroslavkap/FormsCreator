@@ -176,7 +176,7 @@ const Logic = ({myForm}) => {
             ?
                 <div className='Logic_made_true'>
                     <div className='Logic_made_left Logic_made_LR'>
-                    <h3 className='logic_h2'>Если (выбраны):</h3>
+                    <h3 className='logic_h2'>Если <font className='smart_hide'>(выбраны)</font>:</h3>
                         {JSON.parse(form.question_answer_pairs).map((pair, pairIndex) => (
                             <div className='Pages_index Pages_index_l' key = {pairIndex}>
                                 {/* <button type='button' onClick={() => delLogic(pairIndex)}>Удалить</button> */}
@@ -186,7 +186,7 @@ const Logic = ({myForm}) => {
                     </div>
 
                     <div className='Logic_made_right Logic_made_LR'>
-                    <h3 className='logic_h2'>То (пропустить страницы):</h3>
+                    <h3 className='logic_h2'>То <font className='smart_hide'>(пропустить страницы)</font>:</h3>
                         {JSON.parse(form.hidden_pages).map((hidden, hiddenIndex) => (
                             // <div key={hiddenIndex}>{hidden.join(", ")}</div>
                             <div className='Pages_index Pages_index_r' key={hiddenIndex}>

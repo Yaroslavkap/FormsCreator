@@ -8,12 +8,24 @@ import { TbFileExport } from "react-icons/tb";
 import { TbBinaryTree } from "react-icons/tb";
 import { FaMousePointer } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import { useSelector } from "react-redux";
+import {useNavigate} from 'react-router-dom';
+import { store } from '../store'
+import { getId } from '../store/auth/actionCreator'
 
 
 function Home() {
   useEffect(() => {
     AOS.init({duration: 1000})
   }, [])
+
+  const isLoggedIn = useSelector(
+    (state) => !!state.auth.authData.access
+  );
+
+  const router = useNavigate()
+
+  const user_id = store.dispatch(getId())
 
   return (
     <div className='home_content'>
@@ -75,7 +87,14 @@ function Home() {
 
       <div className='home_ending'>
         <p className='home_ending_label'>Начни прямо сейчас</p>
-        <p className='home_ending_label'>...</p>
+        {/* <p className='home_ending_label'>...</p> */}
+        {/* <button className='home_start_btn' type='button'>Начать</button> */}
+        {isLoggedIn
+        ?
+        <button className='home_start_btn' type='button' onClick={() => router(`/my/${user_id}`) }>Начать</button>
+        :
+        <button className='home_start_btn' type='button' onClick={() => router(`/login`) }>Начать</button>
+        }
       </div>
 
       {/* <div>

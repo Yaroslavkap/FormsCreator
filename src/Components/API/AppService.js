@@ -284,6 +284,48 @@ export default class AppService {
         }
     }
 
+    static async exportStatistic(id) {
+        const accessToken = await store.dispatch(getAccessToken());
+        //console.log(accessToken);
+    
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        };
+    
+        try {
+            const response = await axios.get(`${source}api/export-votes/${id}/`, config);
+            return response;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+
+    // static async exportStatistic(id) {
+    //     try {
+    //       const accessToken = await store.dispatch(getAccessToken());
+    //       const config = {
+    //         headers: {
+    //           'Authorization': `Bearer ${accessToken}`
+    //         }
+    //       };
+    //       const response = await axios.get(`${source}api/export-votes/${id}/`, config);
+    //       const blob = await response.data;
+    //       const url = window.URL.createObjectURL(blob);
+    //       const link = document.createElement('a');
+    //       link.href = url;
+    //       link.setAttribute('download', 'statistics.xlsx');
+    //       document.body.appendChild(link);
+    //       link.click();
+    //       link.parentNode.removeChild(link);
+    //     } catch (error) {
+    //       console.error('Error exporting statistics:', error);
+    //     }
+    //   };
+      
+
  
 }
 

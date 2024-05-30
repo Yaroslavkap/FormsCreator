@@ -55,14 +55,17 @@
 }
 
 .ans_button {
-    height: 3rem;
-    width: 15vw;
+    /* height: 3rem;
+    width: 15vw; */
     background: rgba(115,47,249, .97);
     color: white;
     font-size: 1.3rem;
     margin-bottom: 1rem;
     margin-top: 2rem;
     border-radius: 10px;
+
+    padding: .5rem 1.5rem;
+    margin-right: 1rem
 }
 
 .ans_button:hover {
@@ -73,4 +76,10 @@
 .ans_b_div {
     display: flex;
     justify-content: center;
+}
+
+@media(max-width: 700px) {
+    .a_form_page_main_top {
+        width: 90%;
+    }
 }

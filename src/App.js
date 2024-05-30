@@ -11,6 +11,7 @@ import { getAccessToken } from './Components/store/auth/actionCreator';
 import { useDispatch} from 'react-redux'
 import { getProfile } from './Components/API/Auth';
 import { loginSucess } from './Components/store/auth/authReducer';
+import { loginUser } from './Components/store/auth/actionCreator';
 
 function App() {
   // const isLoggedIn = useSelector(
@@ -60,6 +61,21 @@ function App() {
   //       };
 
   //       checkAuth();
+  //   }, []);
+
+  // const dispatch = useDispatch()
+
+  // const Submit = () => {
+    
+  //   const post = {
+  //       "username": "admin",
+  //       "password": "1234"
+  //   }
+  //   dispatch(loginUser(post)) 
+  // }
+
+  //   useEffect(() => {
+  //       Submit();
   //   }, []);
 
   

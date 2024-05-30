@@ -170,6 +170,21 @@ body {
     font-weight: bold;
 }
 
+.home_start_btn {
+    background: rgba(115,47,249, .97);
+    color: white;
+    font-size: 2rem;
+    border-radius: 10px;
+    padding: .5rem 2rem;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+}
+
+.home_start_btn:hover {
+    transform: scale(1.05);
+    transition-duration: 200ms;
+}
+
 .form_page_all {
     padding-top: 15vh;
 }
@@ -619,8 +634,8 @@ body {
     }
 
     .form_page_left {
-        width: 60%;
-        height: 50vh;
+        width: 80%;
+        height: 125vh;
         /* border-radius: 0; */
         margin-top: 5rem;
         margin-bottom: 2rem;
@@ -649,6 +664,11 @@ body {
         margin: 1rem;
         margin-top: 4rem;  
         
+    }
+
+    .form_editor_page {
+        width: 90%;
+        margin: 1rem;
     }
 
     .form_editor_element {

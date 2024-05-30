@@ -72,7 +72,7 @@ const Registration = () => {
   return (
     <div className='login'>
         
-        <form onSubmit={handleSubmit} className='log_form'>
+        <form onSubmit={handleSubmit} className='log_form reg_form'>
             <h1>Регистрация</h1>
             <div className='log'>
                 <label htmlFor='login'>Логин:</label>
