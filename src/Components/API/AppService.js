@@ -3,7 +3,9 @@ import { getAccessToken, getRefToken } from '../store/auth/actionCreator';
 import { logoutSuccess } from '../store/auth/authReducer';
 import { store } from '../store';
 
-const source = "http://127.0.0.1:8000/"
+// const source = "http://127.0.0.1:8000/"
+// const source = "https://kvakywka.pythonanywhere.com/"
+const source = "http://51.250.94.163:8000/"
 
 export default class AppService {
 
